@@ -1,0 +1,1 @@
+Manage Jupyter Lab projects and access Odoo ORM from notebooks.

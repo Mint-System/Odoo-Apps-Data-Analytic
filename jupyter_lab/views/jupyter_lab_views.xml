@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="jupyter_lab_form_view" model="ir.ui.view">
+        <field name="name">jupyter_lab.jupyter_lab_form_view</field>
+        <field name="model">jupyter.lab</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <!-- <field name="state" widget="statusbar" select="1" readonly="1" /> -->
+                    <!-- <button name="button_confirm" string="Confirm" type="object" /> -->
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box" />
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" />
+                        </h1>
+                    </div>
+                    <notebook>
+                        <page string="General Information" name="general_info">
+                            <group>
+                                <group>
+                                    <field name="path" />
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="jupyter_lab_list_view" model="ir.ui.view">
+        <field name="name">jupyter_lab.jupyter_lab_list_view</field>
+        <field name="model">jupyter.lab</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name" />
+                <field name="path" />
+            </list>
+        </field>
+    </record>
+
+    <record id="jupyter_lab_search_view" model="ir.ui.view">
+        <field name="name">jupyter_lab.jupyter_lab_search_view</field>
+        <field name="model">jupyter.lab</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" />
+                <field name="path" />
+            </search>
+        </field>
+    </record>
+
+    <record id="action_jupyter_lab_view" model="ir.actions.act_window">
+        <field name="name">Labs</field>
+        <field name="res_model">jupyter.lab</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="jupyter_lab_search_view" />
+    </record>
+
+    <menuitem
+        id="jupyter_lab.menu_root"
+        name="Jupyter"
+        web_icon="jupyter_lab,static/description/icon.png"
+    />
+    <menuitem
+        id="jupyter_lab.menu_jupyter"
+        name="Jupyter"
+        parent="jupyter_lab.menu_root"
+    />
+    <menuitem
+        id="jupyter_lab.menu_jupyter_lab"
+        name="Labs"
+        parent="jupyter_lab.menu_jupyter"
+        action="jupyter_lab.action_jupyter_lab_view"
+        sequence="10"
+    />
+</odoo>
