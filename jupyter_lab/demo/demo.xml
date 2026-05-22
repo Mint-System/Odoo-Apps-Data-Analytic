@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <record id="jupyter_lab_demo" model="jupyter.lab">
-        <field name="name">Demo Lab</field>
-        <field name="path">demo</field>
+        <field name="name">Demo</field>
     </record>
 </odoo>

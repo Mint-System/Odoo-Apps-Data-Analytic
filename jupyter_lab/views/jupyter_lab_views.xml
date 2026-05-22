@@ -6,8 +6,10 @@
         <field name="arch" type="xml">
             <form>
                 <header>
-                    <!-- <field name="state" widget="statusbar" select="1" readonly="1" /> -->
-                    <!-- <button name="button_confirm" string="Confirm" type="object" /> -->
+                    <field name="state" widget="statusbar" select="1" readonly="1" />
+                    <button name="action_initialize" string="Initialize" type="object" />
+                    <button name="action_start" string="Start" type="object" />
+                    <button name="action_stop" string="Stop" type="object" />
                 </header>
                 <sheet>
                     <div class="oe_button_box" name="button_box" />
@@ -20,7 +22,8 @@
                         <page string="General Information" name="general_info">
                             <group>
                                 <group>
-                                    <field name="path" />
+                                    <field name="url" widget="Link" />
+                                    <field name="local_path" />
                                 </group>
                             </group>
                         </page>
@@ -36,7 +39,9 @@
         <field name="arch" type="xml">
             <list>
                 <field name="name" />
-                <field name="path" />
+                <field name="url" />
+                <field name="local_path" />
+                <field name="state" />
             </list>
         </field>
     </record>
@@ -47,7 +52,8 @@
         <field name="arch" type="xml">
             <search>
                 <field name="name" />
-                <field name="path" />
+                <field name="url" />
+                <field name="local_path" />
             </search>
         </field>
     </record>
