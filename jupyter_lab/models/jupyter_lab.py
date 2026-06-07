@@ -54,22 +54,32 @@ class JupyterLab(models.Model):
         for lab in self:
             lab.token = secrets.token_hex(16)
 
-    def action_initialize(self):
+    def _init_jupyter_lab(self):
         """
         Create juypter lab directory and config file.
         Copy startup script and main.ipynb template.
         """
+        self.ensure_one()
+        return
+
+    def action_initialize(self):
+        """ """
+        self.ensure_one()
+        self._init_jupyter_lab()
+        self.state = "ready"
         return
 
     def action_start(self):
         """
         Launch jupyter lab in directory. Ensure no other juypter lab is running.
-        Pass current user uid to startup script. Store pid of process.
+        Pass current user uid to startup script.
         """
+        self.ensure_one()
         return
 
     def action_stop(self):
         """
-        Stop juypter lab server.
+        Stop juypter lab process.
         """
+        self.ensure_one()
         return

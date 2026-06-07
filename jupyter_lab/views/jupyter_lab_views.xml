@@ -7,7 +7,11 @@
             <form>
                 <header>
                     <field name="state" widget="statusbar" select="1" readonly="1" />
-                    <button name="action_initialize" string="Initialize" type="object" />
+                    <button
+                        name="action_initialize"
+                        string="Initialize"
+                        type="object"
+                    />
                     <button name="action_start" string="Start" type="object" />
                     <button name="action_stop" string="Stop" type="object" />
                 </header>
