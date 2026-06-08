@@ -63,7 +63,7 @@
     <menuitem
         id="jupyter_lab.menu_jupyter_notebook"
         name="Notebooks"
-        parent="jupyter_lab.menu_jupyter"
+        parent="jupyter_lab.menu_root"
         action="jupyter_lab.action_jupyter_notebook_view"
         sequence="20"
     />

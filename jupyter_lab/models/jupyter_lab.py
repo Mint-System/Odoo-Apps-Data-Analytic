@@ -115,12 +115,14 @@ class JupyterLab(models.Model):
         """
         self.ensure_one()
         self._init_jupyter_lab()
-        self.env["jupyter.notebook"].create(
-            {
-                "name": "main.ipynb",
-                "lab_id": self.id,
-            }
-        )
+        existing = self.env["jupyter.notebook"].search([("name", "=", "main.ipynb"), ("lab_id", "=", self.id)], limit=1)
+        if not existing:
+            self.env["jupyter.notebook"].create(
+                {
+                    "name": "main.ipynb",
+                    "lab_id": self.id,
+                }
+            )
         self.state = "ready"
         return
 

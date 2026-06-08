@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="jupyter_notebook_run_tree_view" model="ir.ui.view">
+        <field name="name">jupyter_notebook_run.jupyter_notebook_run_tree_view</field>
+        <field name="model">jupyter.notebook.run</field>
+        <field name="arch" type="xml">
+            <list create="false">
+                <field name="name" />
+                <field name="notebook_id" />
+                <field name="lab_id" />
+                <field name="state" />
+                <field name="create_date" />
+            </list>
+        </field>
+    </record>
+
+    <record id="jupyter_notebook_run_form_view" model="ir.ui.view">
+        <field name="name">jupyter_notebook_run.jupyter_notebook_run_form_view</field>
+        <field name="model">jupyter.notebook.run</field>
+        <field name="arch" type="xml">
+            <form create="false">
+                <header>
+                    <field name="state" widget="statusbar" />
+                    <button
+                        name="action_run"
+                        string="Run"
+                        type="object"
+                        class="btn-primary"
+                        invisible="state != 'draft'"
+                    />
+                    <button
+                        name="action_reset"
+                        string="Reset"
+                        type="object"
+                        invisible="state not in ('success','error')"
+                    />
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" />
+                        </h1>
+                    </div>
+                    <group>
+                        <field name="notebook_id" options="{'no_create': True}" />
+                        <field name="lab_id" />
+                        <field name="state" />
+                        <field name="attachment_id" />
+                    </group>
+                    <group string="Values">
+                        <field
+                            name="values"
+                            nolabel="1"
+                            widget="ace"
+                            options="{'mode': 'javascript'}"
+                        />
+                    </group>
+                    <group string="Output">
+                        <div class="terminal-screen">
+                            <field name="output" nolabel="1" readonly="1" />
+                        </div>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="jupyter_notebook_run_search_view" model="ir.ui.view">
+        <field name="name">jupyter_notebook_run.jupyter_notebook_run_search_view</field>
+        <field name="model">jupyter.notebook.run</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" />
+                <field name="notebook_id" />
+                <field name="lab_id" />
+                <field name="state" />
+                <filter
+                    name="state_draft"
+                    string="Draft"
+                    domain="[('state', '=', 'draft')]"
+                />
+                <filter
+                    name="state_running"
+                    string="Running"
+                    domain="[('state', '=', 'running')]"
+                />
+                <filter
+                    name="state_success"
+                    string="Success"
+                    domain="[('state', '=', 'success')]"
+                />
+                <filter
+                    name="state_error"
+                    string="Error"
+                    domain="[('state', '=', 'error')]"
+                />
+                <group expand="0" string="Group By">
+                    <filter
+                        name="group_by_notebook"
+                        string="Notebook"
+                        context="{'group_by': 'notebook_id'}"
+                    />
+                    <filter
+                        name="group_by_lab"
+                        string="Lab"
+                        context="{'group_by': 'lab_id'}"
+                    />
+                    <filter
+                        name="group_by_state"
+                        string="State"
+                        context="{'group_by': 'state'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_jupyter_notebook_run" model="ir.actions.act_window">
+        <field name="name">Notebook Runs</field>
+        <field name="res_model">jupyter.notebook.run</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="jupyter_notebook_run_search_view" />
+    </record>
+
+    <menuitem
+        id="menu_jupyter_notebook_run"
+        name="Runs"
+        parent="jupyter_lab.menu_root"
+        action="action_jupyter_notebook_run"
+        sequence="10"
+    />
+</odoo>

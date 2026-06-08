@@ -121,15 +121,10 @@
         web_icon="jupyter_lab,static/description/icon.png"
     />
     <menuitem
-        id="jupyter_lab.menu_jupyter"
-        name="Jupyter"
-        parent="jupyter_lab.menu_root"
-    />
-    <menuitem
         id="jupyter_lab.menu_jupyter_lab"
         name="Labs"
-        parent="jupyter_lab.menu_jupyter"
+        parent="jupyter_lab.menu_root"
         action="jupyter_lab.action_jupyter_lab_view"
-        sequence="10"
+        sequence="30"
     />
 </odoo>

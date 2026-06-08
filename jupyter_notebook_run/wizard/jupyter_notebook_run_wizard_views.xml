@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="jupyter_notebook_run_wizard_form_view" model="ir.ui.view">
+        <field
+            name="name"
+        >jupyter_notebook_run.jupyter_notebook_run_wizard_form_view</field>
+        <field name="model">jupyter.notebook.run.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Run Jupyter Notebook">
+                <sheet>
+                    <group>
+                        <field
+                            name="notebook_id"
+                            readonly="1"
+                            options="{'no_create': True}"
+                        />
+                        <field name="lab_id" readonly="1" />
+                        <field
+                            name="datas"
+                            widget="binary"
+                            filename="datas_fname"
+                            string="Attachment"
+                        />
+                        <field name="datas_fname" invisible="1" />
+                        <field
+                            name="values"
+                            widget="ace"
+                            options="{'mode': 'javascript'}"
+                            placeholder='{"key": "value"}'
+                        />
+                    </group>
+                </sheet>
+                <footer>
+                    <button
+                        name="action_run"
+                        string="Run"
+                        type="object"
+                        class="btn-primary"
+                    />
+                    <button string="Cancel" class="btn-secondary" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_jupyter_notebook_run_wizard" model="ir.actions.act_window">
+        <field name="name">Run Jupyter Notebook</field>
+        <field name="res_model">jupyter.notebook.run.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <record id="jupyter_notebook_form_view_inherit_run" model="ir.ui.view">
+        <field name="name">jupyter_lab.jupyter_notebook_form_view.inherit.run</field>
+        <field name="model">jupyter.notebook</field>
+        <field name="inherit_id" ref="jupyter_lab.jupyter_notebook_form_view" />
+        <field name="arch" type="xml">
+            <header position="inside">
+                <button
+                    name="action_open_run_wizard"
+                    string="Run"
+                    type="object"
+                    class="btn-primary"
+                />
+            </header>
+        </field>
+    </record>
+</odoo>

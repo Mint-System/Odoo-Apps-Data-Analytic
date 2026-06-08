@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="jupyter_notebook_demo" model="jupyter.notebook">
+        <field name="name">main.ipynb</field>
+        <field name="lab_id" ref="jupyter_lab.jupyter_lab_demo" />
+    </record>
+
+    <record id="jupyter_notebook_run_demo" model="jupyter.notebook.run">
+        <field name="name">Demo Run</field>
+        <field name="notebook_id" ref="jupyter_notebook_demo" />
+        <field name="state">draft</field>
+        <field name="values">{"foo": "bar"}</field>
+    </record>
+</odoo>

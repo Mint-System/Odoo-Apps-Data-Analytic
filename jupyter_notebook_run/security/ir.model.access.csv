@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_jupyter_notebook_run_user,access.jupyter.notebook.run.user,model_jupyter_notebook_run,base.group_user,1,0,0,0
+access_jupyter_notebook_run_manager,access.jupyter.notebook.run.manager,model_jupyter_notebook_run,base.group_erp_manager,1,1,1,1
+access_jupyter_notebook_run_wizard_user,access.jupyter.notebook.run.wizard.user,model_jupyter_notebook_run_wizard,base.group_user,1,0,0,0
+access_jupyter_notebook_run_wizard_manager,access.jupyter.notebook.run.wizard.manager,model_jupyter_notebook_run_wizard,base.group_erp_manager,1,1,1,1
