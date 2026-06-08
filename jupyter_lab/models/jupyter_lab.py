@@ -245,13 +245,19 @@ class JupyterLab(models.Model):
 
         path = Path(self.local_path)
         if path.exists():
-            # Remove generated directories and log, keep .ipynb files.
-            shutil.rmtree(path / ".jupyter", ignore_errors=True)
-            shutil.rmtree(path / ".ipython", ignore_errors=True)
-            try:
-                Path(self.log_file).unlink()
-            except OSError:
-                _logger.warning("Could not delete log file %s", self.log_file, exc_info=True)
+            # Remove only .jupyter, .ipynb_checkpoints, and main.ipynb
+            jupyter_dir = path / ".jupyter"
+            if jupyter_dir.exists():
+                shutil.rmtree(jupyter_dir, ignore_errors=True)
+            checkpoints_dir = path / ".ipynb_checkpoints"
+            if checkpoints_dir.exists():
+                shutil.rmtree(checkpoints_dir, ignore_errors=True)
+            main_nb = path / "main.ipynb"
+            if main_nb.exists():
+                try:
+                    main_nb.unlink()
+                except OSError:
+                    _logger.warning("Could not delete main.ipynb", exc_info=True)
 
         self.notebook_ids.unlink()
 

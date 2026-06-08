@@ -23,5 +23,5 @@
     "application": False,
     "auto_install": False,
     "images": ["images/screen.png"],
-    "external_dependencies": {"python": ["papermill"]},
+    "external_dependencies": {"python": ["papermill", "pandas"]},
 }

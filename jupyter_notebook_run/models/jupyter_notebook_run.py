@@ -112,6 +112,7 @@ class JupyterNotebookRun(models.Model):
                 capture_output=True,
                 text=True,
                 env=env,
+                cwd=str(lab_path),
                 check=False,
             )
             self.output = result.stdout + result.stderr
