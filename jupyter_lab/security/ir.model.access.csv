@@ -1,3 +1,5 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_jupyter_lab_user,access.jupyter.lab.user,model_jupyter_lab,base.group_user,1,0,0,0
 access_jupyter_lab_manager,access.jupyter.lab.manager,model_jupyter_lab,base.group_erp_manager,1,1,1,1
+access_jupyter_notebook_user,access.jupyter.notebook.user,model_jupyter_notebook,base.group_user,1,0,0,0
+access_jupyter_notebook_manager,access.jupyter.notebook.manager,model_jupyter_notebook,base.group_erp_manager,1,1,1,1

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="jupyter_notebook_form_view" model="ir.ui.view">
+        <field name="name">jupyter_lab.jupyter_notebook_form_view</field>
+        <field name="model">jupyter.notebook</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button
+                        name="action_open"
+                        string="Open"
+                        type="object"
+                        class="btn-primary"
+                    />
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" />
+                        </h1>
+                    </div>
+                    <group>
+                        <field name="lab_id" />
+                        <field name="url" widget="url" />
+                        <field name="local_path" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="jupyter_notebook_list_view" model="ir.ui.view">
+        <field name="name">jupyter_lab.jupyter_notebook_list_view</field>
+        <field name="model">jupyter.notebook</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name" />
+                <field name="lab_id" />
+                <field name="url" widget="url" />
+                <field name="local_path" />
+            </list>
+        </field>
+    </record>
+
+    <record id="jupyter_notebook_search_view" model="ir.ui.view">
+        <field name="name">jupyter_lab.jupyter_notebook_search_view</field>
+        <field name="model">jupyter.notebook</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" />
+                <field name="lab_id" />
+            </search>
+        </field>
+    </record>
+
+    <record id="action_jupyter_notebook_view" model="ir.actions.act_window">
+        <field name="name">Notebooks</field>
+        <field name="res_model">jupyter.notebook</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="jupyter_notebook_search_view" />
+    </record>
+
+    <menuitem
+        id="jupyter_lab.menu_jupyter_notebook"
+        name="Notebooks"
+        parent="jupyter_lab.menu_jupyter"
+        action="jupyter_lab.action_jupyter_notebook_view"
+        sequence="20"
+    />
+</odoo>

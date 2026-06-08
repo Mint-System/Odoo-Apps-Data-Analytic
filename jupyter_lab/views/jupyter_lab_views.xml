@@ -11,9 +11,40 @@
                         name="action_initialize"
                         string="Initialize"
                         type="object"
+                        invisible="state != 'draft'"
                     />
-                    <button name="action_start" string="Start" type="object" />
-                    <button name="action_stop" string="Stop" type="object" />
+                    <button
+                        name="action_start"
+                        string="Start"
+                        type="object"
+                        invisible="state != 'ready'"
+                        class="btn-primary"
+                    />
+                    <button
+                        name="action_reset"
+                        string="Reset"
+                        type="object"
+                        invisible="state != 'ready'"
+                    />
+                    <button
+                        name="action_stop"
+                        string="Stop"
+                        type="object"
+                        invisible="state != 'running'"
+                    />
+                    <button
+                        name="action_open"
+                        string="Open"
+                        type="object"
+                        invisible="state != 'running'"
+                        class="btn-primary"
+                    />
+                    <button
+                        name="action_refresh_log"
+                        string="Refresh Log"
+                        type="object"
+                        invisible="state != 'running'"
+                    />
                 </header>
                 <sheet>
                     <div class="oe_button_box" name="button_box" />
@@ -26,10 +57,25 @@
                         <page string="General Information" name="general_info">
                             <group>
                                 <group>
-                                    <field name="url" widget="Link" />
+                                    <field name="url" widget="url" />
                                     <field name="local_path" />
+                                    <field name="pid" />
                                 </group>
                             </group>
+                        </page>
+                        <page string="Log" name="log">
+                            <div class="terminal-screen">
+                                <field name="log_content" readonly="1" />
+                            </div>
+                        </page>
+                        <page string="Notebooks" name="notebooks">
+                            <field name="notebook_ids">
+                                <list>
+                                    <field name="name" />
+                                    <field name="url" widget="url" />
+                                    <field name="local_path" />
+                                </list>
+                            </field>
                         </page>
                     </notebook>
                 </sheet>

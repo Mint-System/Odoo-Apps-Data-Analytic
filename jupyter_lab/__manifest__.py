@@ -14,12 +14,18 @@
     "data": [
         "security/security.xml",
         "views/jupyter_lab_views.xml",
+        "views/jupyter_notebook_views.xml",
         "security/ir.model.access.csv",
     ],
     "installable": True,
     "application": False,
     "auto_install": False,
     "images": ["images/screen.png"],
+    "assets": {
+        "web.assets_backend": [
+            "jupyter_lab/static/src/css/style.css",
+        ],
+    },
     "demo": ["demo/demo.xml"],
     "external_dependencies": {"python": ["jupyter"]},
 }
