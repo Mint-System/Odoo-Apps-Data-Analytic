@@ -6,11 +6,13 @@
         <field name="arch" type="xml">
             <form>
                 <header>
+                    <field name="lab_state" invisible="1" />
                     <button
                         name="action_open"
                         string="Open"
                         type="object"
                         class="btn-primary"
+                        invisible="lab_state != 'running'"
                     />
                 </header>
                 <sheet>
@@ -19,11 +21,17 @@
                             <field name="name" />
                         </h1>
                     </div>
-                    <group>
-                        <field name="lab_id" />
-                        <field name="url" widget="url" />
-                        <field name="local_path" />
-                    </group>
+                    <notebook>
+                        <page string="General Information" name="general_info">
+                            <group>
+                                <group>
+                                    <field name="lab_id" />
+                                    <field name="url" widget="url" />
+                                    <field name="local_path" />
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
                 </sheet>
             </form>
         </field>

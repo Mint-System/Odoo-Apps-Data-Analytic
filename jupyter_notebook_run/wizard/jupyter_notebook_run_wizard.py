@@ -1,5 +1,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
+from datetime import datetime
+
 from odoo import _, fields, models
 from odoo.exceptions import UserError
 
@@ -36,6 +38,7 @@ class JupyterNotebookRunWizard(models.TransientModel):
 
         run = self.env["jupyter.notebook.run"].create(
             {
+                "name": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
                 "notebook_id": self.notebook_id.id,
                 "attachment_id": attachment_id,
                 "values": self.values,

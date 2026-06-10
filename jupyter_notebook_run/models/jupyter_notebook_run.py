@@ -4,7 +4,6 @@ import json
 import logging
 import os
 import subprocess
-from datetime import datetime
 from pathlib import Path
 
 from odoo import _, fields, models
@@ -19,9 +18,9 @@ class JupyterNotebookRun(models.Model):
     _description = "Jupyter Notebook Run"
     _order = "create_date desc"
 
-    name = fields.Char(required=True, default=lambda self: datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
-    notebook_id = fields.Many2one("jupyter.notebook", string="Notebook", required=True, ondelete="cascade")
-    lab_id = fields.Many2one("jupyter.lab", string="Lab", related="notebook_id.lab_id", store=True, readonly=True)
+    name = fields.Char(required=True)
+    notebook_id = fields.Many2one("jupyter.notebook", required=True, readonly=True, ondelete="cascade")
+    lab_id = fields.Many2one("jupyter.lab", related="notebook_id.lab_id", readonly=True)
     state = fields.Selection(
         selection=[
             ("draft", "Draft"),

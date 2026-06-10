@@ -14,6 +14,7 @@ class JupyterNotebook(models.Model):
     lab_id = fields.Many2one("jupyter.lab", string="Lab", required=True, ondelete="cascade")
     local_path = fields.Char(compute="_compute_local_path")
     url = fields.Char(compute="_compute_url")
+    lab_state = fields.Selection(related="lab_id.state")
 
     def _compute_local_path(self):
         for notebook in self:
